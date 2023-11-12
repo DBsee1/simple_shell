@@ -84,7 +84,7 @@ char **identify_string(char *parameter)
 		i++;
 		split = strtok(NULL, delim);
 	}
-	execute_proc(buf);
+	run_command(buf);
 	return (buf);
 
 }
