@@ -12,6 +12,6 @@ int main(int ac, char **av)
 	(void)ac;
 
 	signal(SIGINT, controlC);
-	prompt();
+	CLI();
 	return (0);
 }
