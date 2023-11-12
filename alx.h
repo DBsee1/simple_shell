@@ -27,7 +27,7 @@ char *str_concat(char *s1, char *s2);
 int lookforslash(char *cmd);
 int compareExit(char *s1, char *s2);
 int compareEnv(char *s1, char *s2);
-void execute_proc(char **cmd);
+void run_command(char **cmd);
 char **identify_string(char *parameter);
 void controlC(int sig);
 void CLI(void);
