@@ -1,11 +1,11 @@
 #include "alx.h"
 /**
- * execute_proc - Custom function to output a string similar to puts in C
- * @cmd: a pointer the integer we want to set to 402
+ * run_command - Custom function to output a string similar to puts in C
+ * @cmd: Set the value pointed to by the integer pointer to 402
  *
  * Return: int
  */
-void execute_proc(char **cmd)
+void run_command(char **cmd)
 {
 
 	char *parameter = (*(cmd + 1));
