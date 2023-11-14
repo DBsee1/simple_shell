@@ -1,8 +1,7 @@
-#include "alx.h"
-
+#include "shell.h"
 /**
- * lookforslash - identifies if first char is a slash.
- * @cmd: first string
+ * lookforslash - function to identify if first char is a slash
+ * @cmd: the first string
  * Return: 1 if yes 0 if no.
  */
 int lookforslash(char *cmd)
@@ -13,7 +12,7 @@ int lookforslash(char *cmd)
 	{
 		if (cmd[0] == '/')
 		{
-			printf("%c\n", cmd[0]);
+			_putchar("%c\n", cmd[0]);
 			return (1);
 		}
 
@@ -21,11 +20,10 @@ int lookforslash(char *cmd)
 	}
 	return (0);
 }
-
 /**
- * compareExit - identifies if first char is a slash.
- * @s1: first string
- * @s2: exit string
+ * compareExit - function that identifies if first char is a slash.
+ * @s1: the first string
+ * @s2: the exit string
  * Return: 1 if yes 0 if no.
  */
 int compareExit(char *s1, char *s2)
@@ -44,9 +42,9 @@ int compareExit(char *s1, char *s2)
 }
 
 /**
- * compareEnv - identifies if first char is a slash.
- * @s1: first string
- * @s2: exit string
+ * compareEnv - function that identifies if first char is a slash.
+ * @s1: the first string
+ * @s2: the exit string
  * Return: 1 if yes 0 if no.
  */
 int compareEnv(char *s1, char *s2)
@@ -64,8 +62,8 @@ int compareEnv(char *s1, char *s2)
 	return (*s1 - *s2);
 }
 /**
- * identify_string - identyfy keyboard input.
- * @parameter: call prompt from another function (prompt)
+ * identify_string - function to identify keyboard input
+ * @parameter: the call prompt from another function
  * Return: str
  **/
 char **identify_string(char *parameter)
@@ -85,15 +83,4 @@ char **identify_string(char *parameter)
 		split = strtok(NULL, delim);
 	}
 	execute_proc(buf);
-	return (buf);
-
-}
-/**
- * controlC - avoid close the shell
- * @sig: keep going shell
- **/
-void  controlC(int sig)
-{
-	(void) sig;
-	write(1, "\n$ ", 3);
 }
