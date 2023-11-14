@@ -82,5 +82,20 @@ char **identify_string(char *parameter)
 		i++;
 		split = strtok(NULL, delim);
 	}
+<<<<<<< HEAD:identifiers.c
 	execute_proc(buf);
+=======
+	run_command(buf);
+	return (buf);
+
+}
+/**
+ * controlC - avoid close the shell
+ * @sig: keep going shell
+ **/
+void  controlC(int sig)
+{
+	(void) sig;
+	write(1, "\n$ ", 3);
+>>>>>>> 83556f42599d2a3534030a26af463b1844ab4548:rendering_eng.c
 }
