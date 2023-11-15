@@ -27,7 +27,7 @@ int _erratoi(char *s)
 			return (-1);
 		}
 	}
-	return (int)result;
+	return (result);
 }
 /**
  * print_error - function that prints an error message

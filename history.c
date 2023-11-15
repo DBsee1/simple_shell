@@ -7,18 +7,19 @@
 int write_history(info_t *info)
 {
 	char *filename = get_history_file(info);
-	
+
 	if (!filename)
 	{
-		return -1;
+		return (-1);
 	}
 
 	ssize_t fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+
 	free(filename);
 
 	if (fd == -1)
 	{
-		return -1;
+		return (-1);
 	}
 
 	for (list_t *node = info->history; node; node = node->next)
@@ -30,7 +31,7 @@ int write_history(info_t *info)
 	_putfd(BUF_FLUSH, fd);
 
 	close(fd);
-	return 1;
+	return (1);
 }
 /**
  * get_history_file - function to get the history file
@@ -44,14 +45,15 @@ char *get_history_file(info_t *info)
 	dir = _getenv(info, "HOME");
 	if (!dir)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	size_t buf_size = _strlen(dir) + _strlen(HIST_FILE) + 2;
+
 	buf = malloc(sizeof(char) * buf_size);
 	if (!buf)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	buf[0] = '\0';
@@ -59,9 +61,9 @@ char *get_history_file(info_t *info)
 	_strcat(buf, "/");
 	_strcat(buf, HIST_FILE);
 
-	free(dir);  // Free the result of _getenv as it's not needed anymore
+	free(dir);
 
-	return buf;
+	return (buf);
 }
 /**
  * read_history - function to read history from file
@@ -77,15 +79,16 @@ int read_history(info_t *info)
 
 	if (!filename)
 	{
-		return 0;
+		return (0);
 	}
 
 	int fd = open(filename, O_RDONLY);
+
 	free(filename);
 
 	if (fd == -1)
 	{
-		return 0;
+		return (0);
 	}
 
 	if (!fstat(fd, &st))
@@ -96,14 +99,14 @@ int read_history(info_t *info)
 	if (fsize < 2)
 	{
 		close(fd);
-		return 0;
+		return (0);
 	}
 
 	buf = malloc(sizeof(char) * (fsize + 1));
 	if (!buf)
 	{
 		close(fd);
-		return 0;
+		return (0);
 	}
 
 	rdlen = read(fd, buf, fsize);
@@ -113,7 +116,7 @@ int read_history(info_t *info)
 	{
 		free(buf);
 		close(fd);
-		return 0;
+		return (0);
     }
 
 	close(fd);
@@ -144,7 +147,7 @@ int read_history(info_t *info)
 
 	renumber_history(info);
 
-	return info->histcount;
+	return (info->histcount);
 }
 /**
  * build_history_list - function name to add entry to a history linked list
@@ -167,7 +170,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
 		free(node);
 	}
 
-	return 0;
+	return (0);
 }
 /**
  * renumber_history - function that renumbers the history
@@ -187,5 +190,5 @@ int renumber_history(info_t *info)
 	}
 
 	info->histcount = i;
-	return info->histcount;
+	return (info->histcount);
 }

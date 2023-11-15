@@ -40,7 +40,7 @@ void set_info(info_t *info, char **av)
 		{
 		for (i = 0; info->argv[i]; i++)
 		{
-			// Additional debugging for checking each argv entry
+			/* Additional debugging for checking each argv entry */
 			_putchar("Argv[%d]: %s\n", i, info->argv[i]);
 		}
 		}

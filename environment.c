@@ -12,8 +12,7 @@ char **get_environ(info_t *info)
 		info->environ = list_to_strings(info->env);
 		info->env_changed = 0;
 	}
-
-	return info->environ;
+	return (info->environ);
 }
 /**
  * _unsetenv - funtion name to remove an environment variable
@@ -24,16 +23,16 @@ char **get_environ(info_t *info)
 int _unsetenv(info_t *info, char *var)
 {
 	if (!info->env || !var)
-		return 0;
+		return (0);
 
 	list_t *node = info->env;
 	size_t i = 0;
 
 	while (node)
 	{
-	char *p = starts_with(node->str, var);
-	
-	if (p && *p == '=')
+	char *p = starts_with(node->str, var)
+
+		if (p && *p == '=')
 		{
 			info->env_changed = delete_node_at_index(&(info->env), i);
 			node = info->env;
@@ -44,7 +43,7 @@ int _unsetenv(info_t *info, char *var)
 		i++;
 	}
 
-	return info->env_changed;
+	return (info->env_changed);
 }
 /**
  * _setenv - function that initialize a new environment variable,
@@ -57,20 +56,21 @@ int _unsetenv(info_t *info, char *var)
 int _setenv(info_t *info, char *var, char *value)
 {
 	if (!var || !value)
-		return 0;
+		return (0);
 
 	char *buf = malloc(strlen(var) + strlen(value) + 2);
-	
+
 	if (!buf)
-		return 1;
+		return (1);
 
 	_putchar(buf, "%s=%s", var, value);
 
 	list_t *node = info->env;
-    
+
 	while (node)
 	{
 		char *p = starts_with(node->str, var);
+
 		if (p && *p == '=')
 		{
 			free(node->str);

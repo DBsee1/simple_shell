@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
- * check_chain - function checks we should continue chaining based on last status
+ * check_chain - function checks we should continue chaining
+ * based on last status
  * @info: the parameter struct
  * @i: starting position in buf
  * @buf: the char buffer
@@ -34,9 +35,9 @@ int is_chain(info_t *info, char *buf, size_t *p)
 {
 	if (!info || !buf || *p >= strlen(buf))
 	{
-		// Print an error message
+		/* Print an error message */
 		_eputchar("Error: Invalid input or index out of bounds\n");
-		return 0;
+		return (0);
 	}
 
 	size_t j = *p;
@@ -60,13 +61,13 @@ int is_chain(info_t *info, char *buf, size_t *p)
 	}
 	else
 	{
-		// Print an error message
+		/* Print an error message */
 		_eputchar("Error: Unrecognized chain operator\n");
-		return 0;
+		return (0);
 	}
 
 	*p = j;
-	return 1;
+	return (1);
 }
 /**
  * replace_string - function name that replaces string
@@ -96,7 +97,8 @@ int replace_vars(info_t *info)
 
 		if (!_strcmp(info->argv[i], "$?"))
 		{
-			replace_string(&(info->argv[i]), _strdup(convert_number(info->status, 10, 0)));
+			replace_string(&(info->argv[i]),
+					_strdup(convert_number(info->status, 10, 0)));
 		}
 		else if (!_strcmp(info->argv[i], "$$"))
 		{
@@ -105,6 +107,7 @@ int replace_vars(info_t *info)
 		else
 		{
 			list_t *node = node_starts_with(info->env, &info->argv[i][1], '=');
+
 			if (node)
 			{
 				replace_string(&(info->argv[i]), _strdup(_strchr(node->str, '=') + 1));
@@ -116,7 +119,7 @@ int replace_vars(info_t *info)
 		}
 	}
 
-	return 0;
+	return (0);
 }
 /**
  * replace_alias - function that replaces an aliases in the tokenized string
