@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "alx.h"
 
 /**
  * interactive - returns true if shell is interactive mode
